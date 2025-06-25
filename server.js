@@ -34,6 +34,22 @@ router.post("/", (req, res) => {
   res.status(201).send(`받은 POST 데이터: ${newMessage}`);
 });
 
+// PUT
+router.put("/", (req, res) => {
+  const updatedMessage = req.body;
+  data.message = updatedMessage;
+  res.send(`업데이트된 데이터: ${updatedMessage}`);
+});
+
+// DELETE
+router.delete("/", (req, res) => {
+  data = {};
+  res.status(200).send("데이터가 삭제되었습니다.");
+});
+
+// 라우터 등록
+app.use("/", router);
+
 // const server = http.createServer((req, res) => {
 //   if (req.method === "OPTIONS") {
 //     res.writeHead(204, headers);
@@ -79,6 +95,6 @@ router.post("/", (req, res) => {
 //   }
 // });
 
-server.listen(3000, () => {
-  console.log("서버가 http://localhost:3000/ 에서 실행 중입니다.");
+app.listen(PORT, () => {
+  console.log(`서버가 http://localhost:${PORT}/ 에서 실행 중입니다.`);
 });
