@@ -24,7 +24,7 @@ let data = { message: "여러분 화이팅!" };
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.status(200).json(data);
+  res.json({ message: data.message || "" });
 });
 
 // POST
@@ -43,7 +43,7 @@ router.put("/", (req, res) => {
 
 // DELETE
 router.delete("/", (req, res) => {
-  data = {};
+  data = { message: "" };
   res.status(200).send("데이터가 삭제되었습니다.");
 });
 

@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchButton.addEventListener("click", async () => {
     try {
       const response = await axios.get(API_URL);
+      const data = response.data;
       messageDisplay.textContent = data.message || "메시지가 없습니다";
     } catch (error) {
       console.error("메시지 가져오기 오류:", error);
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const response = await axios.put(API_URL, newMessage, {
           headers: { "Content-Type": "text/plain" },
         });
-        messageDisplay.textContent = response.data || "수정 완료";
+        messageDisplay.textContent = response.data.message || "수정 완료";
       } catch (error) {
         console.error("메시지 업데이트 오류:", error);
       }
